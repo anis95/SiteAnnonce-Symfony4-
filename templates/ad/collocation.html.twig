@@ -1,0 +1,78 @@
+{% extends 'ad/index.html.twig' %}
+{% block title %}Collocation{% endblock %}
+
+{% block ann_body%}
+  
+         
+    <!-- Navigation -->
+   
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <h2 class="my-4">
+        Collocation
+      </h2>
+
+      <div class="row">
+      	{% for ann in annonce %}
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="{{ path('show', {'id': ann.id}) }}"><img class="card-img-top" src="/build/images/properties/{{ ann.filename }}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{{ path('show', {'id': ann.id}) }}">{{ ann.title }}</a>
+              </h4>
+              <p class="card-text">{{ ann.shordescription }}</p>
+          </br>
+          <time datetime="2018-4-27T15:42+01:00">Ajouté le : {{ ann.dateat|date('Y-m-d H:i:s') }} </time>
+            </div>
+          </div>
+        </div>
+         {% endfor %}
+      </div>
+
+      <!-- /.row -->
+
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /.container -->
+
+ 
+
+    <!-- Bootstrap core JavaScript -->
+ {% block script %}
+	<link rel="stylesheet" href="{{ asset('build/js/bootstrap.bundle.min.js') }}" />
+	<link rel="stylesheet" href="{{ asset('build/js/jquery.min.js') }}" />
+{% endblock %}
+
+  </body>
+       
+
+      
+{% endblock %}

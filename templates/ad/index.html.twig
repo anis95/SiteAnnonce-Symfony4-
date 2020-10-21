@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('build/css/app.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('build/css/deposer.css') }}" >
+<link rel="stylesheet" type="text/css" href="{{ asset('build/css/3-col-portfolio.css') }}" />
+ <link rel="stylesheet" type="text/css" href="{{ asset('build/css/bootstrap.min.css') }}" />
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em{{parent()}} auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+</style>
+
+<div class="example-wrapper">
+
+
+<div id='cssmenu'>
+<ul>
+   <li class='active'><a href='/'>Accueil</a></li>
+   <li><a href='/location'>Location</a></li>
+   <li><a href='/souslocation'>Sous-Location</a></li>
+   <li><a href='/collocation'>Collocation</a></li>
+   <li><a href='/deposerannonce'>déposer Annonce</a></li>   
+   <li>
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </li>
+</ul>
+
+
+</div>
+
+
+{% block ann_body %}
+
+{% endblock %}
+
+<div class="container-fluid">
+<footer class="row">
+  
+  <div class="col-xs-6 col-md-6">
+    <div id="Copyright">
+      <p>
+        Copyright © 2018 TunisienEnFrance - Tous Droits Réservés
+      </p>
+    </div>
+  </div>
+</footer>
+</div>
+
+</div>
+
+
+{% endblock %}

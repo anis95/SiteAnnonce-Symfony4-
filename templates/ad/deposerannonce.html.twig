@@ -1,0 +1,86 @@
+{% extends 'ad/index.html.twig' %}
+{% block title %}Déposer annonce{% endblock %}
+
+{% block ann_body%}
+      
+        
+  
+          <h2>Déposer Annonce</h2>   
+            {{ form_start(formAnnonce) }}
+            <fieldset>
+                   <legend>Remplir le formulaire :</legend>
+            <div class="form-groupe">
+             
+           
+            {{ form_row(formAnnonce.title) }}
+             
+        </div>
+
+        <div class="form-groupe">
+              
+            {{ form_row(formAnnonce.shor_description) }}
+        </div>
+
+        <div class="form-groupe">
+             
+            
+            {{ form_row(formAnnonce.description) }}
+        </div>
+
+        <div class="form-groupe">
+              
+            {{ form_row(formAnnonce.date_at) }}
+        </div>
+
+        <div class="form-groupe">
+            
+           
+            {{ form_row(formAnnonce.numero_tel) }}
+        </div>
+
+         <div class="form-groupe">
+            
+              
+            {{ form_row(formAnnonce.lieu) }}
+        </div>
+         <div class="form-groupe">
+            
+              
+            {{ form_row(formAnnonce.region) }}
+        </div>
+        <div class="form-groupe">
+            
+              
+            {{ form_row(formAnnonce.categories) }}
+        </div>
+        
+        <div class="form-groupe">
+            
+        {{ form_row(formAnnonce.imageFile) }}
+
+       </div>
+
+
+    
+     </fieldset>  
+
+   <p>
+     
+        <input type="submit"
+        {% if editMode %}     
+
+        value="Modifier"
+        {% else %}
+        value="Ajouter"
+
+        {% endif %}   
+
+        />
+    </p>
+ 
+  
+     
+            {{ form_end(formAnnonce) }}
+      
+      
+{% endblock %}

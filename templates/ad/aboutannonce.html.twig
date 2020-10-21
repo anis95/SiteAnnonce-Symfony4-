@@ -1,0 +1,90 @@
+{% extends 'ad/index.html.twig' %}
+{% block title %}a propos annonce{% endblock %}
+
+{% block ann_body%}
+  
+         
+
+<div class="container">
+
+      <div class="row">
+        
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+{% for ann in annonce %}
+          <div class="card mt-4">
+            {% if ann.filename %}
+            <img class="card-img-top img-fluid" src="/build/images/properties/{{ ann.filename }}" alt="">
+            {% endif %}
+            <div class="card-body">
+              <h3 class="card-title">{{ ann.title }}</h3>
+              
+              <p class="card-text">{{ ann.shordescription }}</p>
+     
+
+              <h3 class="card-title">Description :</h3>
+              
+              <p class="card-text">{{ ann.description }}</p>
+           
+              
+            </div>
+
+
+            <h3 class="card-title">Region :</h3>
+              
+              <p class="card-text">{{ ann.region.name }}</p>
+              
+
+            <h3 class="card-title">Lieu :</h3>
+              
+              <p class="card-text">{{ ann.lieu }}</p>
+            
+
+              <h3 class="card-title">Téléphone :</h3>
+              
+              <p class="card-text">{{ ann.numerotel }}</p>
+             
+
+              <h3 class="card-title">Téléphone : </h3>
+              
+              <p class="card-text">Ajouté le : {{ ann.dateat|date('Y-m-d H:i:s') }}</p>
+              
+
+          </div>
+          
+          <!-- /.card -->
+
+          <div class="card card-outline-secondary my-4">
+            <div class="card-header">
+              Editer votre annonce 
+            </div>
+            <div class="card-body">
+              
+              <hr>
+              <a href="{{ path('edit', {'id': ann.id}) }}" class="btn btn-success">Modifier</a>
+              
+               <a href="{{ path('delete', {'id': ann.id}) }}" class="btn btn-success">Supprimer</a>
+            </div>
+          </div>
+          <!-- /.card -->
+{% endfor %}
+        </div>
+
+        <!-- /.col-lg-9 -->
+
+      </div>
+  
+    </div>
+
+
+ {% block script %}
+  <link rel="stylesheet" href="{{ asset('build/js/bootstrap.bundle.min.js') }}" />
+  <link rel="stylesheet" href="{{ asset('build/js/jquery.min.js') }}" />
+{% endblock %}
+
+  </body>
+       
+
+      
+{% endblock %}
